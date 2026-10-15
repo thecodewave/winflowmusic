@@ -1,0 +1,91 @@
+/* Home page only. Loaded after style.css, so it reuses the same colours and buttons. */
+
+/* Intro: the name sits beside the portrait, sized to fit its column */
+.intro{display:grid;margin-top:40px;min-height:min(640px,80vh)}
+.intro>*{grid-area:1/1}
+.intro-photo{
+  justify-self:end;align-self:start;position:relative;
+  width:min(42%,460px);aspect-ratio:4/5;border-radius:20px;overflow:hidden;
+  background:var(--panel2);
+  animation:photo-in 1.2s cubic-bezier(.2,.7,.2,1) .15s both;
+}
+.intro-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.intro-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,12,16,.55),transparent 55%),linear-gradient(0deg,rgba(12,12,16,.5),transparent 40%)}
+.intro-photo.empty{background:linear-gradient(160deg,var(--accent),#7d1c0a)}
+.intro-photo.empty img{display:none}
+.intro-photo.empty::before{
+  content:attr(data-initial);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font:800 clamp(160px,28vw,360px)/1 'Syne',sans-serif;color:transparent;-webkit-text-stroke:2px rgba(244,241,234,.35);
+}
+
+.intro-copy{width:100%;position:relative;z-index:1;align-self:center;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.genre{margin:0 0 12px;color:var(--muted);font-size:18px}
+.name{
+  display:block;margin:0;max-width:100%;
+  font-family:'Pirata One','Syne',serif;font-weight:400;
+  font-size:clamp(56px,14vw,200px);line-height:.9;letter-spacing:.01em;white-space:nowrap;
+  /* mask for the entrance; padding gives the hover lift room */
+  overflow:hidden;padding:.12em 0 .16em;margin:-.12em 0 -.16em;
+}
+.name .ch{display:inline-block;animation:letter-in .9s cubic-bezier(.2,.8,.2,1) calc(var(--i)*55ms + 150ms) both;transition:translate .35s cubic-bezier(.2,.8,.2,1)}
+.bio{max-width:30ch;margin:44px 0 32px;color:#C9C6D2;font-size:20px;animation:fade-in .8s ease .9s both}
+.intro .actions{display:flex;flex-wrap:wrap;gap:12px;animation:fade-in .8s ease 1.05s both}
+
+@keyframes letter-in{from{transform:translateY(105%) rotate(4deg)}to{transform:none}}
+@keyframes photo-in{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+
+/* Latest release: a record sliding out of its sleeve */
+.release{display:flex;flex-wrap:wrap;align-items:center;gap:40px;margin-top:96px;padding:40px;border-radius:28px;background:var(--panel);transition:background .25s}
+.release:hover{background:var(--panel2)}
+.release:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.record{position:relative;flex:0 0 auto;width:min(280px,60vw);aspect-ratio:1;margin-right:min(80px,12vw)}
+.record img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:10px;background:var(--accent);box-shadow:8px 8px 32px rgba(0,0,0,.45)}
+.disc{
+  position:absolute;inset:0;border-radius:50%;
+  background:
+    conic-gradient(from 20deg,transparent 0 20%,rgba(255,255,255,.14) 25%,transparent 30% 70%,rgba(255,255,255,.14) 75%,transparent 80%),
+    repeating-radial-gradient(circle,#0a0a0d 0 2px,#17171d 2px 3px);
+  translate:34% 0;transition:translate .6s cubic-bezier(.2,.8,.2,1);
+}
+.disc::after{content:"";position:absolute;inset:33%;border-radius:50%;background:var(--cover,var(--accent)) center/cover;box-shadow:0 0 0 3px #0a0a0d}
+.disc::before{content:"";position:absolute;inset:48.5%;border-radius:50%;background:var(--bg);z-index:1}
+.release-text{flex:1 1 320px;min-width:0}
+.release-text p{margin:0 0 8px;font-size:18px}
+.release-text h2{font-size:clamp(36px,6vw,72px);line-height:1;margin-bottom:28px;overflow-wrap:anywhere}
+@media (hover:hover){
+  .release:hover .disc,.release:focus-visible .disc{translate:48% 0;animation:spin 4s linear infinite}
+}
+@keyframes spin{to{rotate:360deg}}
+
+/* Streaming links, set large */
+.stream{margin-top:96px}
+.stream p{margin:0 0 16px;font-size:18px}
+.stream-links{display:flex;flex-wrap:wrap;gap:8px 40px}
+.stream-links a{
+  font:800 clamp(32px,6vw,64px)/1.15 'Syne',sans-serif;color:var(--text);
+  background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 .08em no-repeat;
+  transition:background-size .35s cubic-bezier(.2,.8,.2,1),color .2s;
+}
+.stream-links a:hover,.stream-links a:focus-visible{background-size:100% .08em;color:var(--accent);outline:none}
+
+/* Small screens: portrait on top, name below it */
+@media (max-width:760px){
+  .intro{display:flex;flex-direction:column;min-height:0}
+  .intro-photo{align-self:stretch;width:100%;aspect-ratio:1/1.1;max-height:70vh}
+  .intro-copy{margin-top:32px}
+  .release{padding:24px;gap:32px;margin-top:72px}
+  .stream{margin-top:72px}
+}
+
+/* Backdrop: the label name, set huge and outlined, in staggered rows behind everything */
+body.home{position:relative;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+  display:flex;flex-direction:column;justify-content:center;gap:.04em;
+  font:800 clamp(56px,11vw,150px)/1 'Syne',sans-serif;rotate:-8deg;scale:1.5}
+.bg span{display:block;white-space:nowrap;text-transform:uppercase;letter-spacing:.02em;
+  color:transparent;-webkit-text-stroke:1.5px rgba(244,241,234,.09)}
+.bg span:nth-child(even){margin-left:-.9em}
+.bg span:nth-child(3n){-webkit-text-stroke-color:rgba(255,90,54,.13)}
+.bg::after{content:"";position:fixed;inset:0;rotate:8deg;scale:1.5;
+  background:radial-gradient(ellipse at 30% 40%,transparent 0,rgba(12,12,16,.55) 75%)}

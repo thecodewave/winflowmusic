@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Songs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+<header class="site" id="site-header"></header>
+<main class="split">
+  <div class="main now">
+    <div class="tabs" id="tabs">
+      <button class="btn on" data-mode="audio">Audio</button>
+      <button class="btn" data-mode="video">Video</button>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div id="audio-wrap"></div>
+    <h1 id="now-title"></h1>
+    <!-- <p class="muted" id="now">Loading...</p> -->
+  </div>
+  <aside class="side"><h2>Tracklist</h2><div class="tracks" id="tracks"></div></aside>
+</main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/songs.js"></script>
+</body>
+</html>

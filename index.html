@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body class="home">
+<div class="bg" aria-hidden="true" id="bg"></div>
+<div class="wrap">
+<header class="site" id="site-header"></header>
+
+<main class="intro" id="intro">
+  <!-- Put his photo at images/artist.jpg (portrait works best). Without it, a colour block with his initial shows instead. -->
+  <div class="intro-photo" id="intro-photo">
+    <img src="images/font.jpg" alt="Portrait of the artist" onerror="this.parentNode.classList.add('empty')">
+  </div>
+  <div class="intro-copy" id="intro-copy">
+    <p class="genre" id="genre"></p>
+    <h1 class="name" id="name"></h1>
+    <p class="bio" id="bio"></p>
+    <div class="actions">
+      <a class="btn solid" href="songs.html">Listen now</a>
+      <a class="btn ghost" href="connect.html">Follow him</a>
+    </div>
+  </div>
+</main>
+
+<a class="release" id="latest-play" href="songs.html" hidden>
+  <div class="record" aria-hidden="true">
+    <span class="disc"></span>
+    <img id="latest-cover" alt="">
+  </div>
+  <div class="release-text">
+    <p class="muted">Latest release</p>
+    <h2 id="latest-title"></h2>
+    <span class="btn solid" id="latest-label">Play audio or video</span>
+  </div>
+</a>
+
+<section class="stream" id="stream" hidden>
+  <p class="muted">Stream on</p>
+  <div class="stream-links" id="stream-links"></div>
+</section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
